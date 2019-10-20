@@ -8,7 +8,7 @@
     <parent>
         <artifactId>main</artifactId>
         <groupId>ru.lanit.dks.hackaton.light</groupId>
-        <version>${project.version}</version>
+        <version>1.0.0</version>
     </parent>
 
     <artifactId>service</artifactId>
@@ -17,7 +17,16 @@
         <dependency>
             <groupId>ru.lanit.dks.hackaton.light</groupId>
             <artifactId>api</artifactId>
-            <version>${project.version}</version>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>ru.lanit.dks.hackaton.light</groupId>
+            <artifactId>service-jpa-impl</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
         </dependency>
     </dependencies>
 

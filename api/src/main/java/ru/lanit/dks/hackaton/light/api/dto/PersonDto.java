@@ -3,7 +3,6 @@ package ru.lanit.dks.hackaton.light.api.dto;
 import ru.lanit.dks.hackaton.light.api.BaseDto;
 
 import javax.json.bind.annotation.JsonbProperty;
-import java.util.Date;
 
 public class PersonDto extends BaseDto {
 
@@ -11,7 +10,7 @@ public class PersonDto extends BaseDto {
     private String name;
 
     @JsonbProperty("birthdate")
-    private Date birthdate;
+    private String birthdate;
 
     public String getName() {
         return name;
@@ -21,11 +20,11 @@ public class PersonDto extends BaseDto {
         this.name = name;
     }
 
-    public Date getBirthdate() {
+    public String getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(Date bithdate) {
+    public void setBirthdate(String bithdate) {
         this.birthdate = bithdate;
     }
 

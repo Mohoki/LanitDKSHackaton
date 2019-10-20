@@ -6,19 +6,26 @@
 
     <groupId>ru.lanit.dks.hackaton.light</groupId>
     <artifactId>main</artifactId>
-    <version>${project.version}</version>
+    <version>1.0.0</version>
 
     <properties>
-        <project.version>1.0.0</project.version>
+        <build.plugins.plugin.version>3.8.1</build.plugins.plugin.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <maven.processor.version>3.3.3</maven.processor.version>
+
         <javax.json.bind.version>1.0</javax.json.bind.version>
-        <javax.ws.ri.varsion>1.1.1</javax.ws.ri.varsion>
+        <javax.ws.ri.version>1.1.1</javax.ws.ri.version>
         <javax.javaee.version>8.0</javax.javaee.version>
+        <javax.persistence.api.version>2.2</javax.persistence.api.version>
+        <eclipselink.version>2.7.4</eclipselink.version>
     </properties>
 
     <modules>
         <module>web</module>
         <module>ear</module>
         <module>service</module>
+        <module>service-jpa-impl</module>
         <module>api</module>
         <module>ejb</module>
     </modules>
@@ -30,12 +37,23 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>${build.plugins.plugin.version}</version>
                 <configuration>
-                    <source>7</source>
-                    <target>7</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                    <source>11</source>
+                    <target>11</target>
                 </configuration>
             </plugin>
         </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.bsc.maven</groupId>
+                    <artifactId>maven-processor-plugin</artifactId>
+                    <version>${maven.processor.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
 
     <dependencyManagement>
@@ -44,11 +62,37 @@
                 <groupId>javax</groupId>
                 <artifactId>javaee-api</artifactId>
                 <version>${javax.javaee.version}</version>
+                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>javax.json.bind</groupId>
                 <artifactId>javax.json.bind-api</artifactId>
                 <version>${javax.json.bind.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>javax.ws.rs</groupId>
+                <artifactId>jsr311-api</artifactId>
+                <version>${javax.ws.ri.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>javax.persistence</groupId>
+                <artifactId>javax.persistence-api</artifactId>
+                <version>${javax.persistence.api.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.eclipse.persistence</groupId>
+                <artifactId>eclipselink</artifactId>
+                <version>${eclipselink.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.eclipse.persistence</groupId>
+                <artifactId>org.eclipse.persistence.jpa.modelgen.processor</artifactId>
+                <version>${eclipselink.version}</version>
+                <scope>provided</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>

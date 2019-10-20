@@ -8,6 +8,9 @@ import ru.lanit.dks.hackaton.light.api.dto.PersonWithCarsDto;
 import ru.lanit.dks.hackaton.light.api.dto.StatisticDto;
 import ru.lanit.dks.hackaton.light.api.service.DaoService;
 
+import javax.enterprise.context.RequestScoped;
+
+@RequestScoped
 public class DaoServiceImpl implements DaoService {
 
     @Override
