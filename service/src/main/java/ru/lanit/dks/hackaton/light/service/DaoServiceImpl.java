@@ -1,7 +1,7 @@
 package ru.lanit.dks.hackaton.light.service;
 
 import ru.lanit.dks.hackaton.light.api.AddDtoException;
-import ru.lanit.dks.hackaton.light.api.NoDtoFound;
+import ru.lanit.dks.hackaton.light.api.NoDtoFoundException;
 import ru.lanit.dks.hackaton.light.api.dto.CarDto;
 import ru.lanit.dks.hackaton.light.api.dto.PersonDto;
 import ru.lanit.dks.hackaton.light.api.dto.PersonWithCarsDto;
@@ -21,7 +21,7 @@ public class DaoServiceImpl implements DaoService {
     }
 
     @Override
-    public PersonWithCarsDto getPersonWithCars(long id) throws NoDtoFound {
+    public PersonWithCarsDto getPersonWithCars(long id) throws NoDtoFoundException {
         return null;
     }
 
