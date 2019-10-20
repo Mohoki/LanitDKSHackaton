@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>main</artifactId>
+        <groupId>ru.lanit.dks.hackaton.light</groupId>
+        <version>1.0.0</version>
+    </parent>
+
+    <artifactId>docker</artifactId>
+
+    <properties>
+        <docker.skip.push>true</docker.skip.push>
+        <docker.showLogs>false</docker.showLogs>
+    </properties>
+
+    <profiles>
+        <profile>
+            <id>do-docker-integration</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>io.fabric8</groupId>
+                        <artifactId>docker-maven-plugin</artifactId>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <dockerHost>${docker.host}</dockerHost>
+                            <images>
+                                <image>
+                                    <name>ru.lanit.dks.hackaton.light/glassfish-1-base:latest</name>
+                                    <build>
+                                        <dockerFileDir>glassfish-1-base</dockerFileDir>
+                                        <filter>@</filter>
+                                    </build>
+                                </image>
+                                <image>
+                                    <name>ru.lanit.dks.hackaton.light/glassfish-2-endorsed:latest</name>
+                                    <build>
+                                        <dockerFileDir>glassfish-2-endorsed</dockerFileDir>
+                                        <filter>@</filter>
+                                    </build>
+                                </image>
+                                <image>
+                                    <name>ru.lanit.dks.hackaton.light/postgresql:latest</name>
+                                    <build>
+                                        <dockerFileDir>postgresql</dockerFileDir>
+                                        <filter>@</filter>
+                                    </build>
+                                </image>
+                            </images>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+</project>

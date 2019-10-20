@@ -1,0 +1,19 @@
+version: '2'
+services:
+  glassfish:
+    image: ru.lanit.dks.hackaton.light/glassfish-5-with-db:latest
+    ports:
+      - "8080:8080"
+      - "443:8181"
+      - "4848:4848"
+    links:
+      - postgresql
+#    volumes:
+#      - /var/log/glassfish-docker:/glassfish4/glassfish/domains/domain1/logs
+#      - /etc/ssl:/glassfish4/glassfish/domains/domain1/config/ssl
+  postgresql:
+    image: ru.lanit.dks.hackaton.light/postgresql:latest
+    ports:
+      - "5432:5432"
+    expose:
+      - "5432"

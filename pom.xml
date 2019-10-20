@@ -9,10 +9,16 @@
     <version>1.0.0</version>
 
     <properties>
+        <docker.ip>localhost</docker.ip>
+        <docker.port>2375</docker.port>
+        <docker.host>http://${docker.ip}:${docker.port}</docker.host>
+        <postgresql.port>5432</postgresql.port>
+
         <build.plugins.plugin.version>3.8.1</build.plugins.plugin.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <maven.processor.version>3.3.3</maven.processor.version>
+        <docker.maven.plugin.version>0.31.0</docker.maven.plugin.version>
 
         <javax.json.bind.version>1.0</javax.json.bind.version>
         <javax.ws.ri.version>1.1.1</javax.ws.ri.version>
@@ -28,6 +34,7 @@
         <module>service-jpa-impl</module>
         <module>api</module>
         <module>ejb</module>
+        <module>integration</module>
     </modules>
 
     <packaging>pom</packaging>
@@ -51,6 +58,11 @@
                     <groupId>org.bsc.maven</groupId>
                     <artifactId>maven-processor-plugin</artifactId>
                     <version>${maven.processor.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>io.fabric8</groupId>
+                    <artifactId>docker-maven-plugin</artifactId>
+                    <version>${docker.maven.plugin.version}</version>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -96,5 +108,14 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <profiles>
+        <profile>
+            <id>do-docker-integration</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+        </profile>
+    </profiles>
 
 </project>
