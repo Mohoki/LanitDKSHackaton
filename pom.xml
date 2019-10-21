@@ -9,21 +9,29 @@
     <version>1.0.0</version>
 
     <properties>
+        <!-- docker daemon and container software versions -->
         <docker.ip>localhost</docker.ip>
         <docker.port>2375</docker.port>
         <docker.host>http://${docker.ip}:${docker.port}</docker.host>
+        <glassfish.admin.port>4848</glassfish.admin.port>
+        <glassfish.admin.user>admin</glassfish.admin.user>
+        <glassfish.admin.password>12345678</glassfish.admin.password>
         <postgresql.port>5432</postgresql.port>
 
+
+        <!-- maven build/plugin versions-->
         <build.plugins.plugin.version>3.8.1</build.plugins.plugin.version>
+        <maven.plugin.deploy.version>2.7</maven.plugin.deploy.version>
+        <maven.plugin.docker.version>0.31.0</maven.plugin.docker.version>
+        <maven.plugin.processor.version>3.3.3</maven.plugin.processor.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <maven.processor.version>3.3.3</maven.processor.version>
-        <docker.maven.plugin.version>0.31.0</docker.maven.plugin.version>
-
+        <!-- Frameworks and libraries versions -->
         <javax.json.bind.version>1.0</javax.json.bind.version>
         <javax.ws.ri.version>1.1.1</javax.ws.ri.version>
         <javax.javaee.version>8.0</javax.javaee.version>
         <javax.persistence.api.version>2.2</javax.persistence.api.version>
+        <!-- Remark: Glassfish 5.1 has 2.7.4 embedded version -->
         <eclipselink.version>2.7.4</eclipselink.version>
     </properties>
 
@@ -51,18 +59,30 @@
                     <target>11</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
         </plugins>
         <pluginManagement>
             <plugins>
                 <plugin>
                     <groupId>org.bsc.maven</groupId>
                     <artifactId>maven-processor-plugin</artifactId>
-                    <version>${maven.processor.version}</version>
+                    <version>${maven.plugin.processor.version}</version>
                 </plugin>
                 <plugin>
                     <groupId>io.fabric8</groupId>
                     <artifactId>docker-maven-plugin</artifactId>
-                    <version>${docker.maven.plugin.version}</version>
+                    <version>${maven.plugin.docker.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>${maven.plugin.deploy.version}</version>
                 </plugin>
             </plugins>
         </pluginManagement>

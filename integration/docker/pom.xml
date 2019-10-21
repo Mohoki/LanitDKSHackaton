@@ -30,6 +30,22 @@
                         <groupId>io.fabric8</groupId>
                         <artifactId>docker-maven-plugin</artifactId>
                         <extensions>true</extensions>
+                        <executions>
+                            <execution>
+                                <id>buildContainers</id>
+                                <phase>install</phase>
+                                <goals>
+                                    <goal>build</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>clearContainers</id>
+                                <phase>clean</phase>
+                                <goals>
+                                    <goal>remove</goal>
+                                </goals>
+                            </execution>
+                        </executions>
                         <configuration>
                             <dockerHost>${docker.host}</dockerHost>
                             <images>
@@ -41,9 +57,16 @@
                                     </build>
                                 </image>
                                 <image>
-                                    <name>ru.lanit.dks.hackaton.light/glassfish-2-endorsed:latest</name>
+                                    <name>ru.lanit.dks.hackaton.light/glassfish-2-libs:latest</name>
                                     <build>
-                                        <dockerFileDir>glassfish-2-endorsed</dockerFileDir>
+                                        <dockerFileDir>glassfish-2-libs</dockerFileDir>
+                                        <filter>@</filter>
+                                    </build>
+                                </image>
+                                <image>
+                                    <name>ru.lanit.dks.hackaton.light/glassfish-3-secured:latest</name>
+                                    <build>
+                                        <dockerFileDir>glassfish-3-secured</dockerFileDir>
                                         <filter>@</filter>
                                     </build>
                                 </image>
