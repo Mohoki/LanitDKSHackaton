@@ -1,7 +1,5 @@
-!.idea
 .idea/*
+!.idea
 !.idea/runConfigurations/
-!.idea/runConfigurations/*
-.idea/
 **/target/
 *.iml
